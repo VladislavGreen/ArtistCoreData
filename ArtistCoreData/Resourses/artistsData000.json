@@ -1,0 +1,13 @@
+[
+    {
+        "id": 1000,
+        "name": "Default Electronic",
+        "dateRegistered": "2023.01.01",
+        "dateRegisteredTS": 1672531200000,
+        "isConfirmed": false,
+        "descriptionShort": "Small Text",
+        "countFollowers": 1340,
+        "mainImageName": "ElectronicTrio",
+        "mainImageURL": "https://disk.yandex.ru/i/UwJvmA9JAMyI6w"
+    }
+]

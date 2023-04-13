@@ -9,14 +9,27 @@ import CoreData
 
 struct PersistenceController {
     static let shared = PersistenceController()
-
+    
     static var preview: PersistenceController = {
+        
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+        
+        let artists: [ArtistCodable] = JsonReader.shared.load("artistsData000.json")
+        if let artist = artists.first {
+            let newArtist = Artist(context: viewContext)
+            newArtist.id = artist.id
+            newArtist.countFollowers = artist.countFollowers
+            newArtist.dateRegistered = artist.dateRegistered
+            newArtist.dateRegisteredTS = artist.dateRegisteredTS
+            newArtist.descriptionShort = artist.descriptionShort
+            newArtist.isConfirmed = artist.isConfirmed
+            newArtist.mainImageName = artist.mainImageName
+            newArtist.mainImageURL = artist.mainImageURL
+            //        newArtist.name = artist.name
+            newArtist.name = "Preview Artist Name"
         }
+        
         do {
             try viewContext.save()
         } catch {
@@ -48,9 +61,11 @@ struct PersistenceController {
                  * The store could not be migrated to the current model version.
                  Check the error message to determine what the actual problem was.
                  */
+                print("❌ init error")
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        print("✅ init")
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
 }
