@@ -33,7 +33,22 @@ final class CoreDataManager {
     private func update(artist: ArtistCodable, context: NSManagedObjectContext) {
         print("✅ update")
         
-        let newArtist = Artist(context: context)
+        let newArtist: Artist!
+        
+        // 🛑 сделать проверку нет-ли уже такой сущности по ID?
+        let fetchRequestCheck = Artist.fetchRequest()
+        fetchRequestCheck.predicate = NSPredicate(format: "id == %i", artist.id)
+        
+        // проверяем нет ли уже такой локации
+        let results = try? context.fetch(fetchRequestCheck)
+        if results?.count != 0 {
+            // если есть
+            newArtist = results?.first  // и потом меняем значения
+            print("данные для объекта \(newArtist.name) были обновлены")
+        } else {
+            newArtist = Artist(context: context)
+        }
+        
         newArtist.id = artist.id
         newArtist.countFollowers = artist.countFollowers
         newArtist.dateRegistered = artist.dateRegistered

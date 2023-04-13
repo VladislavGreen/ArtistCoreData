@@ -18,6 +18,7 @@
 		A4ABB52B29E7EBF70010EC5A /* JsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ABB52A29E7EBF70010EC5A /* JsonReader.swift */; };
 		A4ABB52D29E7F6C20010EC5A /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ABB52C29E7F6C20010EC5A /* ArtistView.swift */; };
 		A4ABB53129E814D10010EC5A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ABB53029E814D10010EC5A /* CoreDataManager.swift */; };
+		A4ABB53329E86EAE0010EC5A /* ProfileHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ABB53229E86EAE0010EC5A /* ProfileHostView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		A4ABB52A29E7EBF70010EC5A /* JsonReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonReader.swift; sourceTree = "<group>"; };
 		A4ABB52C29E7F6C20010EC5A /* ArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistView.swift; sourceTree = "<group>"; };
 		A4ABB53029E814D10010EC5A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		A4ABB53229E86EAE0010EC5A /* ProfileHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				A4ABB51029E7E8D00010EC5A /* ArtistCoreDataApp.swift */,
 				A4ABB51229E7E8D00010EC5A /* ContentView.swift */,
 				A4ABB52C29E7F6C20010EC5A /* ArtistView.swift */,
+				A4ABB53229E86EAE0010EC5A /* ProfileHostView.swift */,
 				A4ABB52729E7EA1A0010EC5A /* Models */,
 				A4ABB52329E7E9020010EC5A /* CoreData */,
 				A4ABB52629E7E9F50010EC5A /* Resourses */,
@@ -191,6 +194,7 @@
 				A4ABB52B29E7EBF70010EC5A /* JsonReader.swift in Sources */,
 				A4ABB53129E814D10010EC5A /* CoreDataManager.swift in Sources */,
 				A4ABB51129E7E8D00010EC5A /* ArtistCoreDataApp.swift in Sources */,
+				A4ABB53329E86EAE0010EC5A /* ProfileHostView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

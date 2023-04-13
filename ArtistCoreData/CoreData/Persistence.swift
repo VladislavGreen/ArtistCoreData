@@ -16,7 +16,8 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
         
         let artists: [ArtistCodable] = JsonReader.shared.load("artistsData000.json")
-        if let artist = artists.first {
+
+        for artist in artists {
             let newArtist = Artist(context: viewContext)
             newArtist.id = artist.id
             newArtist.countFollowers = artist.countFollowers
@@ -27,7 +28,7 @@ struct PersistenceController {
             newArtist.mainImageName = artist.mainImageName
             newArtist.mainImageURL = artist.mainImageURL
             //        newArtist.name = artist.name
-            newArtist.name = "Preview Artist Name"
+            newArtist.name = "Preview Artist \(artist.id) Name"
         }
         
         do {

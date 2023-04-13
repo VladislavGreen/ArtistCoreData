@@ -1,13 +1,35 @@
 [
     {
         "id": 1000,
-        "name": "Default Electronic",
+        "name": "Default 1 Electronic",
         "dateRegistered": "2023.01.01",
         "dateRegisteredTS": 1672531200000,
         "isConfirmed": false,
-        "descriptionShort": "Small Text",
+        "descriptionShort": "Electronic artist",
         "countFollowers": 1340,
         "mainImageName": "ElectronicTrio",
+        "mainImageURL": "https://disk.yandex.ru/i/UwJvmA9JAMyI6w"
+    },
+    {
+        "id": 1001,
+        "name": "Default 2 Rock",
+        "dateRegistered": "2023.01.01",
+        "dateRegisteredTS": 1672531200000,
+        "isConfirmed": true,
+        "descriptionShort": "Rock artist",
+        "countFollowers": 1595,
+        "mainImageName": "Rockstar2",
+        "mainImageURL": "https://disk.yandex.ru/i/UwJvmA9JAMyI6w"
+    },
+    {
+        "id": 1002,
+        "name": "Default 3 Jazz",
+        "dateRegistered": "2023.01.01",
+        "dateRegisteredTS": 1672531200000,
+        "isConfirmed": true,
+        "descriptionShort": "Jazz artist",
+        "countFollowers": 15,
+        "mainImageName": "Rockstar1",
         "mainImageURL": "https://disk.yandex.ru/i/UwJvmA9JAMyI6w"
     }
 ]

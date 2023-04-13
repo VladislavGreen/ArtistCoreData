@@ -17,14 +17,30 @@ struct ArtistView: View {
         animation: .default)
     private var artists: FetchedResults<Artist>
     
+    @State private var showingProfile = false
+    
+    @Binding var artistIndex: Int
+    init(artistIndex: Binding<Int> = .constant(0)) {
+        _artistIndex = artistIndex
+    }
+    
     
     var body: some View {
         VStack {
             Text("С превью мы справились:")
-            if let artists {
-                Text(artists.first?.name ?? "Нет данных")
+            if artists.count != 0 {
+                Text(artists[artistIndex].name ?? "Нет данных")
             } else {
                 Text("Данные не загружаются")
+            }
+            Button {
+                showingProfile.toggle()
+            } label: {
+                Text("Profile")
+            }
+            .sheet(isPresented: $showingProfile) {
+                ProfileHostView()
+                    .environment(\.managedObjectContext, self.viewContext)
             }
         }
     }
