@@ -22,7 +22,13 @@ struct ContentView: View {
             Button {
                 refreshData()
             } label: {
-                Text("Load JSON to CoreData")
+                Text("Load default JSON to CoreData")
+            }
+            
+            Button {
+                printDataBaseAsJson()
+            } label: {
+                Text("Print current database as JSON")
             }
             
             Button {
@@ -31,6 +37,7 @@ struct ContentView: View {
             } label: {
                 Text("Clear Database")
             }
+            
             Spacer()
         }
         .onReceive(timer) {_ in
@@ -47,7 +54,12 @@ struct ContentView: View {
     
     private func refreshData() {
         let coreDataManager = CoreDataManager()
-        coreDataManager.getArtists()
+        coreDataManager.importJson(filename: "artistsData001.json")
+    }
+    
+    private func printDataBaseAsJson() {
+        let coreDataManager = CoreDataManager()
+        coreDataManager.exportCoreData()
     }
 }
 

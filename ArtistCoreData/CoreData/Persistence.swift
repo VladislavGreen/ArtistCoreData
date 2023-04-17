@@ -10,27 +10,53 @@ import CoreData
 struct PersistenceController {
     static let shared = PersistenceController()
     
+    // Convenience
+    var viewContext: NSManagedObjectContext {
+        container.viewContext
+    }
+
     static var preview: PersistenceController = {
-        
+
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         
-        let artists: [ArtistCodable] = JsonReader.shared.load("artistsData000.json")
-
-        for artist in artists {
-            let newArtist = Artist(context: viewContext)
-            newArtist.id = artist.id
-            newArtist.countFollowers = artist.countFollowers
-            newArtist.dateRegistered = artist.dateRegistered
-            newArtist.dateRegisteredTS = artist.dateRegisteredTS
-            newArtist.descriptionShort = artist.descriptionShort
-            newArtist.isConfirmed = artist.isConfirmed
-            newArtist.mainImageName = artist.mainImageName
-            newArtist.mainImageURL = artist.mainImageURL
-            //        newArtist.name = artist.name
-            newArtist.name = "Preview Artist \(artist.id) Name"
-        }
+        let release1 = Release(context: viewContext)
+        release1.id = Int64(333)
+        release1.releaseName = "Preview Release"
         
+        let artist1 = Artist(context: viewContext)
+        artist1.id = Int64(1111)
+        artist1.countFollowers = Int64(2222)
+        artist1.dateRegistered = "artist.dateRegistered"
+        artist1.dateRegisteredTS = Int64(1672531200000)
+        artist1.descriptionShort = "artist.descriptionShort"
+        artist1.isConfirmed = true
+        artist1.mainImageName = "artist.mainImageName"
+        artist1.mainImageURL = "artist.mainImageURL"
+        artist1.name = "Artist Name From Persistance"
+
+        try? viewContext.save()
+        
+//        JsonReader.shared.readJSON("artistsData001.json") { artists, errorString in
+//
+//            if let artists {
+//                for artist in artists {
+//                    let newArtist = Artist(context: viewContext)
+//                    newArtist.id = artist.id
+//                    newArtist.countFollowers = artist.countFollowers
+//                    newArtist.dateRegistered = artist.dateRegistered
+//                    newArtist.dateRegisteredTS = artist.dateRegisteredTS
+//                    newArtist.descriptionShort = artist.descriptionShort
+//                    newArtist.isConfirmed = artist.isConfirmed
+//                    newArtist.mainImageName = artist.mainImageName
+//                    newArtist.mainImageURL = artist.mainImageURL
+//                    //        newArtist.name = artist.name
+//                    newArtist.name = "Preview Artist \(artist.id) Name"
+//                }
+//            }
+//        }
+
+
         do {
             try viewContext.save()
         } catch {

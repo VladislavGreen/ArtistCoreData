@@ -9,36 +9,26 @@ import SwiftUI
 
 struct ProfileHostView: View {
     
+    @AppStorage("defaultArtist") var defaultArtist: String?
+    
     @Environment(\.managedObjectContext) private var viewContext
     
     @FetchRequest(
-        sortDescriptors: [],
+        sortDescriptors: [SortDescriptor(\.name)],
         animation: .default)
     private var artists: FetchedResults<Artist>
+    
     
     var body: some View {
         VStack{
             
-            Text("Managed artists:")
+            Text("Managed artist:")
             
-                List {
-                    ForEach(artists) { artist in
-                        HStack {
-                            Text(artist.name ?? "")
-                            Button {
-                                // makeDefaultArtist
-                                
-                            } label: {
-                                Text("Default")
-                            }
-                        }
-                        .onTapGesture {
-                            print(artist.objectID)
-                            print(type(of: artist.objectID)) //NSCoreDataTaggedObjectID
-                        }
-                    }
+            Picker(selection: $defaultArtist, label: Text("Select an artist")) {
+                ForEach(artists) { artist in
+                    Text(artist.name ?? "").tag(artist.name as String?)
                 }
-            
+            }
         }
     }
 }
@@ -49,3 +39,4 @@ struct ProfileHostView_Previews: PreviewProvider {
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
+

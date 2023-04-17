@@ -1,0 +1,63 @@
+Results of experiments with encoding CoreData to JSON formst
+
+
+Using loadJson and exportCoreData (formatted by hand):
+
+[
+    {
+        "mainImageName":"ElectronicTrio",
+        "releases":
+        [
+            {
+                "id":101,
+                "releaseName":"One Hundred and One"
+            }
+        ],
+        "mainImageURL":"https:\/\/disk.yandex.ru\/i\/UwJvmA9JAMyI6w",
+        "dateRegistered":"2023.01.01",
+        "id":1001,
+        "dateRegisteredTS":1672531200000,
+        "isConfirmed":false,
+        "countFollowers":1340,
+        "name":"Default 1 Electronic",
+        "descriptionShort":"Electronic artist"
+        
+    },
+    {
+        "mainImageName":"Rockstar1",
+        "releases":
+        [
+            {"id":304,
+                "releaseName":"Three Hundred and Four"
+                
+            },
+            {"id":303,
+                "releaseName":"Three Hundred and Three"}
+        ],
+        "mainImageURL":"https:\/\/disk.yandex.ru\/i\/UwJvmA9JAMyI6w",
+        "dateRegistered":"2023.01.01",
+        "id":1003,
+        "dateRegisteredTS":1672531200000,
+        "isConfirmed":true,
+        "countFollowers":15,
+        "name":"Default 3 Jazz",
+        "descriptionShort":"Jazz artist"
+        
+    },
+    {"mainImageName":"Rockstar2"
+        ,"releases":
+        [
+            {
+                "id":202,
+                "releaseName":"Two Hundred and Two"
+            }
+        ],
+        "mainImageURL":"https:\/\/disk.yandex.ru\/i\/UwJvmA9JAMyI6w",
+        "dateRegistered":"2023.01.01",
+        "id":1002,"dateRegisteredTS":1672531200000,
+        "isConfirmed":true,
+        "countFollowers":1595,
+        "name":"Default 2 Rock",
+        "descriptionShort":"Rock artist"
+    }
+]
