@@ -29,9 +29,7 @@ public class Artist: NSManagedObject, Codable {
         countFollowers = try values.decode(Int64.self, forKey: .countFollowers)
         mainImageName = try values.decode(String.self, forKey: .mainImageName)
         mainImageURL = try values.decode(String.self, forKey: .mainImageURL)
-//        if let releasesArray = releases?.allObjects as? [Release] {
-            releases = try values.decode(Set<Release>.self, forKey: .releases)
-//        }
+        releases = try values.decode(Set<Release>.self, forKey: .releases)
     }
     
     // Confirming Encoding

@@ -26,14 +26,13 @@ struct ContentView: View {
             }
             
             Button {
-                printDataBaseAsJson()
+                exportDataBaseAsJson()
             } label: {
                 Text("Print current database as JSON")
             }
             
             Button {
-                let coreDataManager = CoreDataManager()
-                coreDataManager.clearDatabase()
+                clearDataBase()
             } label: {
                 Text("Clear Database")
             }
@@ -53,13 +52,15 @@ struct ContentView: View {
     }
     
     private func refreshData() {
-        let coreDataManager = CoreDataManager()
-        coreDataManager.importJson(filename: "artistsData001.json")
+        CoreDataManager.shared.importJson(filename: "artistsData001.json")
     }
     
-    private func printDataBaseAsJson() {
-        let coreDataManager = CoreDataManager()
-        coreDataManager.exportCoreData()
+    private func exportDataBaseAsJson() {
+        CoreDataManager.shared.exportCoreData()
+    }
+    
+    private func clearDataBase() {
+        CoreDataManager.shared.clearDatabase()
     }
 }
 

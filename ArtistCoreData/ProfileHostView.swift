@@ -25,6 +25,9 @@ struct ProfileHostView: View {
             Text("Managed artist:")
             
             Picker(selection: $defaultArtist, label: Text("Select an artist")) {
+                if artists.count == 0 {
+                    Text("No artist loaded").tag(nil as String?)
+                }
                 ForEach(artists) { artist in
                     Text(artist.name ?? "").tag(artist.name as String?)
                 }

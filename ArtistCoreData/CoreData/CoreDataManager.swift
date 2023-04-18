@@ -10,15 +10,20 @@ import Combine
 import CoreData
 
 
-final class CoreDataManager {
+class CoreDataManager {
     
     var context: NSManagedObjectContext = PersistenceController.shared.container.viewContext
     
+    static let shared = CoreDataManager()
     
-    func clearDatabase() {
-        let fetchRequest = Artist.fetchRequest()
-        for artist in (try? context.fetch(fetchRequest)) ?? [] {
-            context.delete(artist)
+    func saveContext () {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
         }
     }
     
@@ -33,26 +38,49 @@ final class CoreDataManager {
             let jsonData = try Data(contentsOf: url)
             let decoder = JSONDecoder()
             decoder.userInfo[.contextUserInfoKey] = context
-            let artists = try decoder.decode([Artist].self, from: jsonData)
-
-            // Проверка нет-ли уже такой сущности (по ID)
-            
-            for artist in artists {
-                let fetchRequestCheck = Artist.fetchRequest()
-                fetchRequestCheck.predicate = NSPredicate(format: "id == %i", artist.id)
-                let results = try? context.fetch(fetchRequestCheck)
-                if results?.count != 0 {
-                    // если есть
-                    // ⭕️ хорошо бы сделать проверку по дате последней редакции
-                    print("\(String(describing: artist.name)) такой объект уже есть")
-                } else {
-                    try context.save()
-                    print("File Imported successfully")                }
-            }
+            let artistsImported = try decoder.decode([Artist].self, from: jsonData)
+            print("♻️ Обновляем CoreData из JSON")
+            checkDuplicates(artistsImported)
         } catch {
             print("Что-то пошло не так")
             print(error)
         }
+    }
+    
+    func checkDuplicates(_ artists: [Artist]) {
+
+        // Проверка нет-ли уже такой сущности (по ID)
+
+        for i in 0..<artists.count {
+            let fetchRequestCheck = Artist.fetchRequest()
+            fetchRequestCheck.predicate = NSPredicate(format: "id == %i", artists[i].id)
+            let results = try? context.fetch(fetchRequestCheck)
+            guard results?.first != nil else {
+                print("\(String(describing: results?.first?.name)) Imported successfully")
+                return
+            }
+            if results!.count > 1 {
+                let result = results?.first
+                // ⭕️ хорошо бы сделать проверку по дате последней редакции
+                print("\(String(describing: artists[i].name)) уже есть удаляем дубликат")
+                deleteArtist(result!, context: context)
+            }
+            
+        }
+    }
+    
+    func deleteArtist(_ artist: Artist, context: NSManagedObjectContext) {
+        print("❌ deleteArtist \(String(describing: artist.name))")
+        context.delete(artist)
+        try? context.save()
+    }
+    
+    func clearDatabase() {
+        let fetchRequest = Artist.fetchRequest()
+        for artist in (try? context.fetch(fetchRequest)) ?? [] {
+            deleteArtist(artist, context: context)
+        }
+        saveContext()
     }
     
     // https://www.youtube.com/watch?v=0vByJw0aLAU

@@ -36,26 +36,6 @@ struct PersistenceController {
         artist1.name = "Artist Name From Persistance"
 
         try? viewContext.save()
-        
-//        JsonReader.shared.readJSON("artistsData001.json") { artists, errorString in
-//
-//            if let artists {
-//                for artist in artists {
-//                    let newArtist = Artist(context: viewContext)
-//                    newArtist.id = artist.id
-//                    newArtist.countFollowers = artist.countFollowers
-//                    newArtist.dateRegistered = artist.dateRegistered
-//                    newArtist.dateRegisteredTS = artist.dateRegisteredTS
-//                    newArtist.descriptionShort = artist.descriptionShort
-//                    newArtist.isConfirmed = artist.isConfirmed
-//                    newArtist.mainImageName = artist.mainImageName
-//                    newArtist.mainImageURL = artist.mainImageURL
-//                    //        newArtist.name = artist.name
-//                    newArtist.name = "Preview Artist \(artist.id) Name"
-//                }
-//            }
-//        }
-
 
         do {
             try viewContext.save()
