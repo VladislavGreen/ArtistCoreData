@@ -87,9 +87,9 @@ struct ArtistView: View {
                 title: Text("Alert"),
                 message: Text("Вы уверены?"),
                 primaryButton: .destructive(Text("Delete")) {
+                    
                     CoreDataManager.shared.deleteArtist(artists.first!) {
-                        
-                // 🛑 НЕ СПАСАЕТ - всё равно иногда показывает с невыбранным артистом:
+                        defaultArtistName = nil
                         getDefaultArtist()
                     }
                 },
@@ -99,15 +99,17 @@ struct ArtistView: View {
     }
     
     private func getDefaultArtist() {
+        
         if artists.count  != 0 {
             for artist in artists {
-                if artist.name != nil, artist.name != "" {
+                if artist.name != nil {
                     defaultArtistName = artist.name
                     print("❇️ \(defaultArtistName)")
                     break
                 }
             }
-            
+        } else {
+            print("artists.count = 0 ")
         }
     }
 }
