@@ -3,7 +3,7 @@
 //  ArtistCoreData
 //
 //  Created by Vladislav Green on 4/13/23.
-//
+//  https://www.youtube.com/watch?v=0vByJw0aLAU
 
 import Foundation
 import Combine
@@ -28,7 +28,6 @@ class CoreDataManager {
         }
     }
     
-    // Без ArtistCodable
     func importJson(filename: String) {
         guard let url = Bundle.main.url(forResource: filename, withExtension: nil)
         else {
@@ -70,23 +69,11 @@ class CoreDataManager {
         }
     }
     
-    
-//    func editArtist(_ artist: Artist) {
-//        let fetchRequest = Artist.fetchRequest()
-//        fetchRequest.predicate = NSPredicate(format: "id == %i", artist.id)
-//        let result = try? context.fetch(fetchRequest).first
-//        result?.name = artist.name
-//        result?.mainImageURL = artist.mainImageURL
-//        result?.descriptionShort = artist.descriptionShort
-//        saveContext()
-//    }
-    
-
-    
-    func deleteArtist(_ artist: Artist) {
+    func deleteArtist(_ artist: Artist, completion: (()->(Void))? = nil) {
         print("❌ deleteArtist \(String(describing: artist.name))")
         context.delete(artist)
         saveContext()
+        completion?()
     }
     
     func clearDatabase() {
@@ -97,7 +84,6 @@ class CoreDataManager {
         print("❌ Всё удалено")
     }
     
-    // https://www.youtube.com/watch?v=0vByJw0aLAU
     func exportCoreData() {
         do {
             // 1 Fetching
@@ -107,7 +93,6 @@ class CoreDataManager {
                     $0 as? Artist
                     // Здесь можно будет использовать предикаты (если данных много) и отображать прогресс
                 }
-                print("✅ Данные до конвертации в JSON:  \(items)")
                 
                 // 2 Конвертируем в JSON
                 let jsonData = try JSONEncoder().encode(items)
@@ -116,7 +101,9 @@ class CoreDataManager {
                     
                     // 3 Сохраняем пока в Temporary Document
                     if let tempURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                        let pathURL = tempURL.appending(component: "Export\(Date().formatted(date: .complete, time: .omitted)).json")
+                        
+                        let pathURL = tempURL.appending(
+                            component: "Export\(Date().formatted(date: .complete, time: .omitted)).json")
                         try jsonString.write(to: pathURL, atomically: true, encoding: .utf8)
                         // Успешное сохранение
                     }

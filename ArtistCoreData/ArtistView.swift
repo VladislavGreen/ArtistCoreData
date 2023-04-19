@@ -23,6 +23,7 @@ struct ArtistView: View {
     @State private var showingProfile = false
     @State private var showingEditor = false
     @State private var isNewArtist: Bool = true
+    @State private var isDeleteAlert = false
     
     var body: some View {
         VStack {
@@ -68,17 +69,45 @@ struct ArtistView: View {
                 ArtistEditorView(isNewArtist: $isNewArtist)
                 .environment(\.managedObjectContext, self.viewContext)
             }
+            
+            Button {
+                isDeleteAlert = true
+            } label: {
+                Text("DELETE current artist)")
+            }
+            .disabled(artists.count == 0)
         }
         .onChange(of: defaultArtistName ?? "Непредвиденное") { value in
             artists.nsPredicate = defaultArtistName?.isEmpty ?? true
             ? nil
             : NSPredicate(format: "name == %@", value)
         }
+        .alert(isPresented: $isDeleteAlert) {
+            Alert(
+                title: Text("Alert"),
+                message: Text("Вы уверены?"),
+                primaryButton: .destructive(Text("Delete")) {
+                    CoreDataManager.shared.deleteArtist(artists.first!) {
+                        
+                // 🛑 НЕ СПАСАЕТ - всё равно иногда показывает с невыбранным артистом:
+                        getDefaultArtist()
+                    }
+                },
+                secondaryButton: .cancel()
+            )
+        }
     }
     
     private func getDefaultArtist() {
         if artists.count  != 0 {
-            defaultArtistName = artists.first?.name ?? "Непонятный артист"
+            for artist in artists {
+                if artist.name != nil, artist.name != "" {
+                    defaultArtistName = artist.name
+                    print("❇️ \(defaultArtistName)")
+                    break
+                }
+            }
+            
         }
     }
 }

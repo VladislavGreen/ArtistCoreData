@@ -52,7 +52,6 @@ struct ArtistEditorView: View {
                 artist?.mainImageURL = self.mainImageURL
                 
                 CoreDataManager.shared.saveContext()
-//                try? self.viewContext.save()
                 
                 defaultArtistName = self.name
                 
