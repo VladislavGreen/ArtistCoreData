@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A467CA2F29EF11990025DBE8 /* ArtistEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A467CA2E29EF11990025DBE8 /* ArtistEditorView.swift */; };
+		A467CA3129F004670025DBE8 /* artistsData000.json in Resources */ = {isa = PBXBuildFile; fileRef = A467CA3029F004670025DBE8 /* artistsData000.json */; };
 		A4ABB51129E7E8D00010EC5A /* ArtistCoreDataApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ABB51029E7E8D00010EC5A /* ArtistCoreDataApp.swift */; };
 		A4ABB51329E7E8D00010EC5A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4ABB51229E7E8D00010EC5A /* ContentView.swift */; };
 		A4ABB51529E7E8D20010EC5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4ABB51429E7E8D20010EC5A /* Assets.xcassets */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A467CA2E29EF11990025DBE8 /* ArtistEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistEditorView.swift; sourceTree = "<group>"; };
+		A467CA3029F004670025DBE8 /* artistsData000.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = artistsData000.json; sourceTree = "<group>"; };
 		A4ABB50D29E7E8D00010EC5A /* ArtistCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtistCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4ABB51029E7E8D00010EC5A /* ArtistCoreDataApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistCoreDataApp.swift; sourceTree = "<group>"; };
 		A4ABB51229E7E8D00010EC5A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -85,6 +89,7 @@
 				A4ABB51029E7E8D00010EC5A /* ArtistCoreDataApp.swift */,
 				A4ABB51229E7E8D00010EC5A /* ContentView.swift */,
 				A4ABB52C29E7F6C20010EC5A /* ArtistView.swift */,
+				A467CA2E29EF11990025DBE8 /* ArtistEditorView.swift */,
 				A4ABB53229E86EAE0010EC5A /* ProfileHostView.swift */,
 				A4B49A7C29EAFF6600297A04 /* DefaultSettings.swift */,
 				A4ABB52329E7E9020010EC5A /* CoreData */,
@@ -117,6 +122,7 @@
 		A4ABB52629E7E9F50010EC5A /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
+				A467CA3029F004670025DBE8 /* artistsData000.json */,
 				A4B49A8229ED403800297A04 /* artistsData001.json */,
 				A4ABB53429E972DF0010EC5A /* artistsFromCoreData.json */,
 			);
@@ -212,6 +218,7 @@
 			files = (
 				A4B49A8329ED403800297A04 /* artistsData001.json in Resources */,
 				A4ABB51829E7E8D20010EC5A /* Preview Assets.xcassets in Resources */,
+				A467CA3129F004670025DBE8 /* artistsData000.json in Resources */,
 				A4ABB53529E972DF0010EC5A /* artistsFromCoreData.json in Resources */,
 				A4ABB51529E7E8D20010EC5A /* Assets.xcassets in Resources */,
 			);
@@ -227,6 +234,7 @@
 				A4B49AB229ED532A00297A04 /* CoreDataHelpers.swift in Sources */,
 				A4B49A8029EC3CB200297A04 /* Artist+CoreDataClass.swift in Sources */,
 				A4B49A7D29EAFF6600297A04 /* DefaultSettings.swift in Sources */,
+				A467CA2F29EF11990025DBE8 /* ArtistEditorView.swift in Sources */,
 				A4ABB51A29E7E8D20010EC5A /* Persistence.swift in Sources */,
 				A4ABB51D29E7E8D20010EC5A /* ArtistCoreData.xcdatamodeld in Sources */,
 				A4ABB52D29E7F6C20010EC5A /* ArtistView.swift in Sources */,

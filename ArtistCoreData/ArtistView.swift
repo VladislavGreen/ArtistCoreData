@@ -11,7 +11,7 @@ import CoreData
 
 struct ArtistView: View {
     
-    @AppStorage("defaultArtist") var defaultArtist = DefaultSettings.defaultArtistName
+    @AppStorage("defaultArtistName") var defaultArtistName: String?
     
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -21,13 +21,17 @@ struct ArtistView: View {
     private var artists: FetchedResults<Artist>
     
     @State private var showingProfile = false
-    
+    @State private var showingEditor = false
+    @State private var isNewArtist: Bool = true
     
     var body: some View {
         VStack {
             
             if artists.count != 0 {
                 Text(artists.first?.name ?? "Неизвестный артист")
+                    .onAppear {
+                        getDefaultArtist()
+                    }
             } else {
                 Text("Нет данных")
             }
@@ -35,17 +39,46 @@ struct ArtistView: View {
             Button {
                 showingProfile.toggle()
             } label: {
-                Text("Profile (to change current artist)")
+                Text("CHOOSE current artist)")
             }
             .sheet(isPresented: $showingProfile) {
                 ProfileHostView()
                     .environment(\.managedObjectContext, self.viewContext)
             }
+            
+            Button {
+                showingEditor.toggle()
+                isNewArtist = false
+            } label: {
+                Text("EDIT current artist)")
+            }
+            .disabled(artists.count == 0)
+            .sheet(isPresented: $showingEditor) {
+                ArtistEditorView(isNewArtist: $isNewArtist)
+                .environment(\.managedObjectContext, self.viewContext)
+            }
+            
+            Button {
+                showingEditor.toggle()
+                isNewArtist = true
+            } label: {
+                Text("CREATE NEW artist)")
+            }
+            .sheet(isPresented: $showingEditor) {
+                ArtistEditorView(isNewArtist: $isNewArtist)
+                .environment(\.managedObjectContext, self.viewContext)
+            }
         }
-        .onChange(of: defaultArtist) { value in
-            artists.nsPredicate = defaultArtist.isEmpty
+        .onChange(of: defaultArtistName ?? "Непредвиденное") { value in
+            artists.nsPredicate = defaultArtistName?.isEmpty ?? true
             ? nil
             : NSPredicate(format: "name == %@", value)
+        }
+    }
+    
+    private func getDefaultArtist() {
+        if artists.count  != 0 {
+            defaultArtistName = artists.first?.name ?? "Непонятный артист"
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileHostView: View {
     
-    @AppStorage("defaultArtist") var defaultArtist: String?
+    @AppStorage("defaultArtistName") var defaultArtistName: String?
     
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -24,7 +24,7 @@ struct ProfileHostView: View {
             
             Text("Managed artist:")
             
-            Picker(selection: $defaultArtist, label: Text("Select an artist")) {
+            Picker(selection: $defaultArtistName, label: Text("Select an artist")) {
                 if artists.count == 0 {
                     Text("No artist loaded").tag(nil as String?)
                 }

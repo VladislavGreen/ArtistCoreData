@@ -39,16 +39,16 @@ struct ContentView: View {
             
             Spacer()
         }
-        .onReceive(timer) {_ in
-            if timeRemaining > 0 {
-                timeRemaining -= 1
-            }
-            if timeRemaining == 0 {
-                print("Start")
-                refreshData()
-                self.timer.upstream.connect().cancel()
-            }
-        }
+//        .onReceive(timer) {_ in
+//            if timeRemaining > 0 {
+//                timeRemaining -= 1
+//            }
+//            if timeRemaining == 0 {
+//                print("Start")
+//                refreshData()
+//                self.timer.upstream.connect().cancel()
+//            }
+//        }
     }
     
     private func refreshData() {

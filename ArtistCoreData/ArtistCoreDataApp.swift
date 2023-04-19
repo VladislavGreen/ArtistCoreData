@@ -9,12 +9,16 @@ import SwiftUI
 
 @main
 struct ArtistCoreDataApp: App {
-    let persistenceController = PersistenceController.shared
+//    let persistenceController = PersistenceController.shared
+    @Environment(\.scenePhase) var scenePhase
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(\.managedObjectContext, CoreDataManager.shared.context)
+        }
+        .onChange(of: scenePhase) { _ in
+            CoreDataManager.shared.saveContext()
         }
     }
 }

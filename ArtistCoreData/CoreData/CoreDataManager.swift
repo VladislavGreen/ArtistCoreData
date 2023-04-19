@@ -15,6 +15,7 @@ class CoreDataManager {
     var context: NSManagedObjectContext = PersistenceController.shared.container.viewContext
     
     static let shared = CoreDataManager()
+    private init(){}
     
     func saveContext () {
         if context.hasChanges {
@@ -63,24 +64,37 @@ class CoreDataManager {
                 let result = results?.first
                 // ⭕️ хорошо бы сделать проверку по дате последней редакции
                 print("\(String(describing: artists[i].name)) уже есть удаляем дубликат")
-                deleteArtist(result!, context: context)
+                deleteArtist(result!)
             }
             
         }
     }
     
-    func deleteArtist(_ artist: Artist, context: NSManagedObjectContext) {
+    
+//    func editArtist(_ artist: Artist) {
+//        let fetchRequest = Artist.fetchRequest()
+//        fetchRequest.predicate = NSPredicate(format: "id == %i", artist.id)
+//        let result = try? context.fetch(fetchRequest).first
+//        result?.name = artist.name
+//        result?.mainImageURL = artist.mainImageURL
+//        result?.descriptionShort = artist.descriptionShort
+//        saveContext()
+//    }
+    
+
+    
+    func deleteArtist(_ artist: Artist) {
         print("❌ deleteArtist \(String(describing: artist.name))")
         context.delete(artist)
-        try? context.save()
+        saveContext()
     }
     
     func clearDatabase() {
         let fetchRequest = Artist.fetchRequest()
         for artist in (try? context.fetch(fetchRequest)) ?? [] {
-            deleteArtist(artist, context: context)
+            deleteArtist(artist)
         }
-        saveContext()
+        print("❌ Всё удалено")
     }
     
     // https://www.youtube.com/watch?v=0vByJw0aLAU
