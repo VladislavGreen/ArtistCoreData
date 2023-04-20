@@ -20,7 +20,7 @@ public class Release: NSManagedObject, Codable {
         
         // Декодируем
         let values = try decoder.container(keyedBy: ReleaseCodingKeys.self)
-        id = try values.decode(Int64.self, forKey: .id)
+        id = try values.decode(UUID.self, forKey: .id)
         releaseName = try values.decode(String.self, forKey: .releaseName)
 //        ofArtist = try values.decode(Artist.self, forKey: .ofArtist)
     }

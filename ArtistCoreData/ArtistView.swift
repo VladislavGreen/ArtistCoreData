@@ -104,7 +104,6 @@ struct ArtistView: View {
             for artist in artists {
                 if artist.name != nil {
                     defaultArtistName = artist.name
-                    print("❇️ \(defaultArtistName)")
                     break
                 }
             }
@@ -121,14 +120,15 @@ struct ArtistView_Previews: PreviewProvider {
         let viewContext = result.viewContext
         
         let release1 = Release(context: viewContext)
-        release1.id = Int64(333)
+        release1.id = UUID(uuidString: "E07ABFD8-429B-4A5A-AEDB-EE4C9E9A7C94")!
         release1.releaseName = "Preview Release"
         
         let artist1 = Artist(context: viewContext)
-        artist1.id = Int64(1111)
+        artist1.id = UUID(uuidString: "E07ABFD8-429B-4A5A-AEDB-EE4C9E9A7C95")!
         artist1.countFollowers = Int64(2222)
         artist1.dateRegistered = "artist.dateRegistered"
-        artist1.dateRegisteredTS = Int64(1672531200000)
+        artist1.dateRegisteredTS = Date(timeIntervalSince1970: 1672531200000)
+        artist1.dateEditedTS = Date(timeIntervalSince1970: 1672531200000)
         artist1.descriptionShort = "artist.descriptionShort"
         artist1.isConfirmed = true
         artist1.mainImageName = "artist.mainImageName"

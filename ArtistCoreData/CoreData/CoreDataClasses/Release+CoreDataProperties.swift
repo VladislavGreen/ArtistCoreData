@@ -16,7 +16,7 @@ extension Release {
         return NSFetchRequest<Release>(entityName: "Release")
     }
 
-    @NSManaged public var id: Int64
+    @NSManaged public var id: UUID
     @NSManaged public var releaseName: String?
     @NSManaged public var ofArtist: Artist?
 

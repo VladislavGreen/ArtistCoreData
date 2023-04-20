@@ -20,10 +20,11 @@ public class Artist: NSManagedObject, Codable {
         
         // Декодируем
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decode(Int64.self, forKey: .id)
+        id = try values.decode(UUID.self, forKey: .id)
         name = try values.decode(String.self, forKey: .name)
         dateRegistered = try values.decode(String.self, forKey: .dateRegistered)
-        dateRegisteredTS = try values.decode(Int64.self, forKey: .dateRegisteredTS)
+        dateRegisteredTS = try values.decode(Date.self, forKey: .dateRegisteredTS)
+        dateEditedTS = try values.decode(Date.self, forKey: .dateEditedTS)
         isConfirmed = try values.decode(Bool.self, forKey: .isConfirmed)
         descriptionShort = try values.decode(String.self, forKey: .descriptionShort)
         countFollowers = try values.decode(Int64.self, forKey: .countFollowers)
@@ -40,6 +41,7 @@ public class Artist: NSManagedObject, Codable {
         try values.encode(name, forKey: .name)
         try values.encode(dateRegistered, forKey: .dateRegistered)
         try values.encode(dateRegisteredTS, forKey: .dateRegisteredTS)
+        try values.encode(dateEditedTS, forKey: .dateEditedTS)
         try values.encode(isConfirmed, forKey: .isConfirmed)
         try values.encode(descriptionShort, forKey: .descriptionShort)
         try values.encode(countFollowers, forKey: .countFollowers)
@@ -53,6 +55,7 @@ public class Artist: NSManagedObject, Codable {
              name,
              dateRegistered,
              dateRegisteredTS,
+             dateEditedTS,
              isConfirmed,
              descriptionShort,
              countFollowers,

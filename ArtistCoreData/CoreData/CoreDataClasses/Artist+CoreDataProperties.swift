@@ -18,9 +18,10 @@ extension Artist {
 
     @NSManaged public var countFollowers: Int64
     @NSManaged public var dateRegistered: String?
-    @NSManaged public var dateRegisteredTS: Int64
+    @NSManaged public var dateRegisteredTS: Date
+    @NSManaged public var dateEditedTS: Date
     @NSManaged public var descriptionShort: String?
-    @NSManaged public var id: Int64
+    @NSManaged public var id: UUID
     @NSManaged public var isConfirmed: Bool
     @NSManaged public var mainImageName: String?
     @NSManaged public var mainImageURL: String?

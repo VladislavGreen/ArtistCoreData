@@ -6,7 +6,6 @@
 //  https://www.youtube.com/watch?v=0vByJw0aLAU
 
 import Foundation
-import Combine
 import CoreData
 
 
@@ -38,6 +37,7 @@ class CoreDataManager {
             let jsonData = try Data(contentsOf: url)
             let decoder = JSONDecoder()
             decoder.userInfo[.contextUserInfoKey] = context
+            decoder.dateDecodingStrategy = .millisecondsSince1970
             let artistsImported = try decoder.decode([Artist].self, from: jsonData)
             print("♻️ Обновляем CoreData из JSON")
             checkDuplicates(artistsImported)
@@ -53,7 +53,7 @@ class CoreDataManager {
 
         for i in 0..<artists.count {
             let fetchRequestCheck = Artist.fetchRequest()
-            fetchRequestCheck.predicate = NSPredicate(format: "id == %i", artists[i].id)
+            fetchRequestCheck.predicate = NSPredicate(format: "id == %@", artists[i].id as CVarArg)
             let results = try? context.fetch(fetchRequestCheck)
             guard results?.first != nil else {
                 print("\(String(describing: results?.first?.name)) Imported successfully")
@@ -61,7 +61,7 @@ class CoreDataManager {
             }
             if results!.count > 1 {
                 let result = results?.first
-                // ⭕️ хорошо бы сделать проверку по дате последней редакции
+                // ⭕️ хорошо бы сделать проверку по дате последней редакции timestamp
                 print("\(String(describing: artists[i].name)) уже есть удаляем дубликат")
                 deleteArtist(result!)
             }

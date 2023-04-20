@@ -1,9 +1,10 @@
 [
     {
-        "id": 1001,
+        "id": "E07ABFD8-429B-4A5A-AEDB-EE4C9E9A7C70",
         "name": "Default 1 Electronic",
         "dateRegistered": "2023.01.01",
         "dateRegisteredTS": 1672531200000,
+        "dateEditedTS": 1672531200000,
         "isConfirmed": false,
         "descriptionShort": "Electronic artist",
         "countFollowers": 1340,
@@ -11,16 +12,17 @@
         "mainImageURL": "https://disk.yandex.ru/i/UwJvmA9JAMyI6w",
         "releases": [
             {
-                "id": 101,
+                "id": "E07ABFD8-429B-4A5A-AEDB-EE4C9E9A7C81",
                 "releaseName": "One Hundred and One"
             }
         ]
     },
     {
-        "id": 1002,
+        "id": "E07ABFD8-429B-4A5A-AEDB-EE4C9E9A7C71",
         "name": "Default 2 Rock",
         "dateRegistered": "2023.01.01",
         "dateRegisteredTS": 1672531200000,
+        "dateEditedTS": 1672531200000,
         "isConfirmed": true,
         "descriptionShort": "Rock artist",
         "countFollowers": 1595,
@@ -28,16 +30,17 @@
         "mainImageURL": "https://disk.yandex.ru/i/UwJvmA9JAMyI6w",
         "releases": [
             {
-                "id": 202,
+                "id": "E07ABFD8-429B-4A5A-AEDB-EE4C9E9A7C82",
                 "releaseName": "Two Hundred and Two"
             }
         ]
     },
     {
-        "id": 1003,
+        "id": "E07ABFD8-429B-4A5A-AEDB-EE4C9E9A7C73",
         "name": "Default 3 Jazz",
         "dateRegistered": "2023.01.01",
         "dateRegisteredTS": 1672531200000,
+        "dateEditedTS": 1672531200000,
         "isConfirmed": true,
         "descriptionShort": "Jazz artist",
         "countFollowers": 15,
@@ -45,11 +48,11 @@
         "mainImageURL": "https://disk.yandex.ru/i/UwJvmA9JAMyI6w",
         "releases": [
             {
-                "id": 303,
+                "id": "E07ABFD8-429B-4A5A-AEDB-EE4C9E9A7C84",
                 "releaseName": "Three Hundred and Three"
             },
             {
-                "id": 304,
+                "id": "E07ABFD8-429B-4A5A-AEDB-EE4C9E9A7C85",
                 "releaseName": "Three Hundred and Four"
             }
         ]

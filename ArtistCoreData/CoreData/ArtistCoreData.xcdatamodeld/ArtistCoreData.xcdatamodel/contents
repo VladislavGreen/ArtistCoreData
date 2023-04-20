@@ -2,10 +2,11 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21G320" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Artist" representedClassName="Artist" syncable="YES">
         <attribute name="countFollowers" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="dateEditedTS" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dateRegistered" optional="YES" attributeType="String"/>
-        <attribute name="dateRegisteredTS" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="dateRegisteredTS" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="descriptionShort" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isConfirmed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="mainImageName" optional="YES" attributeType="String"/>
         <attribute name="mainImageURL" optional="YES" attributeType="String"/>
@@ -13,7 +14,7 @@
         <relationship name="releases" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Release" inverseName="ofArtist" inverseEntity="Release"/>
     </entity>
     <entity name="Release" representedClassName="Release" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="releaseName" optional="YES" attributeType="String"/>
         <relationship name="ofArtist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Artist" inverseName="releases" inverseEntity="Artist"/>
     </entity>
